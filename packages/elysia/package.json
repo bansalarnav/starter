@@ -1,0 +1,19 @@
+{
+  "name": "@repo/elysia",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src",
+  "prettier": "@repo/config/prettier",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.31.28",
+    "elysia": "^0.7.29",
+    "pino": "^8.16.2"
+  }
+}

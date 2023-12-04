@@ -27,13 +27,6 @@ export const createServer = (config: ElysiaCustomConfig = {}) => {
       c.set.status = 404;
       return "Not Found";
     })
-    .guard({
-      headers: t.Object({
-        "user-agent": t.String(),
-        "x-forwarded-for": t.String(),
-        authorization: t.Optional(t.String()),
-      }),
-    })
     // Logger
     .derive(({ headers }) => {
       return {

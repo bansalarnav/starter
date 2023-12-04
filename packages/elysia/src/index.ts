@@ -1,3 +1,4 @@
+// import { cors, HTTPMethod } from "@elysiajs/cors";
 import Elysia, { ElysiaConfig, HTTPMethod, t } from "elysia";
 import pino from "pino";
 import { fileRouter } from "./fileRouter";
@@ -26,13 +27,6 @@ export const createServer = (config: ElysiaCustomConfig = {}) => {
     .all("/*", (c) => {
       c.set.status = 404;
       return "Not Found";
-    })
-    .guard({
-      headers: t.Object({
-        "user-agent": t.String(),
-        "x-forwarded-for": t.String(),
-        authorization: t.Optional(t.String()),
-      }),
     })
     // Logger
     .derive(({ headers }) => {
@@ -69,6 +63,7 @@ export const createServer = (config: ElysiaCustomConfig = {}) => {
     c.set.headers = { ...headers };
     const origin = c.request.headers.get("origin");
     if (cors.origin && origin && cors.origin.includes(origin)) {
+      console.log(cors.origin);
       c.set.headers["Access-Control-Allow-Origin"] = origin;
       c.set.headers["Vary"] = "Origin";
     }

@@ -1,5 +1,6 @@
 import { createServer } from "@repo/elysia";
 import { env } from "@repo/utils";
+import { startYoga } from "./graphql";
 
 const server = createServer({
   cors: {
@@ -10,5 +11,7 @@ const server = createServer({
   },
   routesDir: `${__dirname}/http`,
 });
+
+startYoga(server);
 
 server.listen(env("API_PORT", "8000"));

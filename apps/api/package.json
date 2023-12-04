@@ -10,9 +10,12 @@
     "start": "bun src/index.ts"
   },
   "dependencies": {
+    "@pothos/core": "^3.40.0",
     "@repo/db": "workspace:*",
     "@repo/elysia": "workspace:*",
     "@repo/utils": "workspace:*",
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^5.0.1",
     "jose": "^5.1.1",
     "ua-parser-js": "^1.0.37",
     "ulid": "^2.3.0"

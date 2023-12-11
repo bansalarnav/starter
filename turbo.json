@@ -2,7 +2,34 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "@repo/db#prisma:generate": {
+      "cache": false,
+      "inputs": ["prisma/**"]
+    },
+    "@repo/api#graphql:schemagen": {
+      "cache": false,
+      "inputs": ["src/graphql/**"],
+      "dependsOn": ["@repo/db#prisma:generate"]
+    },
+    "@repo/web#graphql:codegen": {
+      "cache": false,
+      "outputs": ["genql/**"],
+      "dependsOn": ["@repo/api#graphql:schemagen"]
+    },
+    "@repo/web#dev": {
+      "cache": false,
+      "dependsOn": ["@repo/web#graphql:codegen"]
+    },
+    "@repo/web#start": {
+      "cache": false,
+      "dependsOn": ["@repo/web#build"]
+    },
+    "@repo/web#build": {
+      "cache": false,
+      "dependsOn": ["@repo/web#graphql:codegen"]
+    },
     "build": {
+      "cache": false,
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
@@ -11,7 +38,13 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["@repo/db#prisma:generate"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["@repo/db#prisma:generate"]
     }
   }
 }

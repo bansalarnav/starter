@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "build": "tsc",
-    "start": "bun src/index.ts"
+    "start": "bun src/index.ts",
+    "graphql:schemagen": "bun src/graphql/codegen.ts",
+    "graphql:schemagen:watch": "bun --watch src/graphql/codegen.ts"
   },
   "dependencies": {
     "@pothos/core": "^3.40.0",

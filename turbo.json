@@ -45,6 +45,10 @@
       "cache": false,
       "persistent": false,
       "dependsOn": ["@repo/db#prisma:generate"]
+    },
+    "codegen": {
+      "cache": false,
+      "dependsOn": ["@repo/web#graphql:codegen"]
     }
   }
 }

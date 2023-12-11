@@ -15,7 +15,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "start": "turbo start"
+    "start": "turbo start",
+    "codegen": "turbo codegen"
   },
   "workspaces": [
     "apps/*",

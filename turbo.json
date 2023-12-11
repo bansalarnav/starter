@@ -2,6 +2,14 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "@repo/db#prisma:generate": {
+      "cache": false,
+      "inputs": ["prisma/**"]
+    },
+    "@repo/web#start": {
+      "cache": false,
+      "dependsOn": ["@repo/web#build"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
@@ -11,7 +19,13 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["@repo/db#prisma:generate"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["@repo/db#prisma:generate"]
     }
   }
 }

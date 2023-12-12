@@ -13,13 +13,10 @@
     "@repo/db": "workspace:*",
     "@repo/elysia": "workspace:*",
     "@repo/utils": "workspace:*",
-    "jose": "^5.1.1",
-    "ua-parser-js": "^1.0.37",
-    "ulid": "^2.3.0"
+    "jose": "^5.1.1"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
-    "@types/ua-parser-js": "^0.7.39",
     "typescript": "^5.2.2"
   }
 }

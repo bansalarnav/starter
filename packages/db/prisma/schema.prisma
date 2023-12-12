@@ -5,17 +5,23 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator pothos {
-  provider = "prisma-pothos-types"
-}
-
 datasource db {
   provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       String    @id @default(uuid())
+  email    String    @unique
+  password String
+  name     String?
+  Session  Session[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  ip        String   @db.Inet
+  createdAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(references: [id], fields: [userId])
 }

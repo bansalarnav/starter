@@ -36,6 +36,10 @@ export const createServer = (config: ElysiaCustomConfig = {}) => {
             level: (label) => ({ level: label }),
           },
         }),
+        auth: {
+          userId: null,
+          sessionId: null,
+        },
       };
     });
 

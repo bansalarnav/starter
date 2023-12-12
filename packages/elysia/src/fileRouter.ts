@@ -16,16 +16,18 @@ import Elysia, {
 } from "elysia";
 import { Logger, LoggerOptions } from "pino";
 
-export interface DecoratorWithLog extends DecoratorBase {
+export interface DecoratorWithLogAndAuth extends DecoratorBase {
   request: {
     log: Logger<LoggerOptions>;
+    auth: {
+      userId: TString;
+      sessionId: TString;
+    };
   };
 }
 
 export interface SchemaWithDefaultHeaders extends RouteSchema {
   headers: TObject<{
-    "mn-id": TString;
-    "user-agent": TString;
     "x-forwarded-for": TString;
     authorization: TOptional<TString>;
   }>;
@@ -33,7 +35,7 @@ export interface SchemaWithDefaultHeaders extends RouteSchema {
 
 export const createRoute = <
   BasePath extends string,
-  Decorators extends DecoratorWithLog,
+  Decorators extends DecoratorWithLogAndAuth,
   Definitions extends DefinitionBase,
   ParentSchema extends SchemaWithDefaultHeaders,
   Path extends string,

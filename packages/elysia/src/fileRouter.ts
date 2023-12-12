@@ -20,8 +20,8 @@ export interface DecoratorWithLogAndAuth extends DecoratorBase {
   request: {
     log: Logger<LoggerOptions>;
     auth: {
-      userId: TString;
-      sessionId: TString;
+      userId: string;
+      sessionId: string;
     };
   };
 }
@@ -48,7 +48,9 @@ export const createRoute = <
 >({
   handler,
   ...hook
-}: { handler: HandlerFunction } & LocalHook<
+}: {
+  handler: HandlerFunction;
+} & LocalHook<
   LocalSchema,
   Route,
   Decorators,
@@ -56,6 +58,7 @@ export const createRoute = <
   `${BasePath}${Path}`
 >) => {
   const { error } = hook;
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   hook.error = (c) => {

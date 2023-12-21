@@ -10,9 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/utils": "workspace:*",
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
     "typescript": "^5.2.2",

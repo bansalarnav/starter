@@ -2,6 +2,7 @@ import { postgres } from "@repo/db/postgres";
 import { createRoute, t } from "@repo/elysia";
 import { createCookie, emailRegex } from "../../utils/auth";
 
+// this is a comment
 export const POST = createRoute({
   handler: async (c) => {
     const { email, password } = c.body;
@@ -9,7 +10,7 @@ export const POST = createRoute({
     const user = await postgres.user.findUnique({
       where: { email },
     });
-
+    
     if (!user) {
       return { success: false, message: "Email is not registered" };
     }

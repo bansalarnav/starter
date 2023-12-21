@@ -7,7 +7,7 @@ export const requireAuth = async (c: ContextWithAuth): Promise<any> => {
   const payload = await decodeCookie(token?.value);
 
   if (!payload.userId || !payload.sessionId) {
-    c.set.status = 401;
+    // c.set.status = 401;
     return { success: false, message: "Unauthorised" };
   }
 
@@ -19,7 +19,7 @@ export const requireAuth = async (c: ContextWithAuth): Promise<any> => {
   });
 
   if (!session) {
-    c.set.status = 401;
+    // c.set.status = 401;
     return { success: false, message: "Unauthorised" };
   }
 

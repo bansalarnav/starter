@@ -7,21 +7,21 @@ import { getUser } from "@/utils/getUser";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Starter Project",
+    title: "Starter Project",
 };
 
 export default async function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const user = await getUser();
+    const user = await getUser();
 
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider user={user}>{children}</AuthProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <AuthProvider user={user}>{children}</AuthProvider>
+            </body>
+        </html>
+    );
 }

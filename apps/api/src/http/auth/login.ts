@@ -10,7 +10,7 @@ export const POST = createRoute({
     const user = await postgres.user.findUnique({
       where: { email },
     });
-    
+
     if (!user) {
       return { success: false, message: "Email is not registered" };
     }

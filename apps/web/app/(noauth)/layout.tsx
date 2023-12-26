@@ -5,13 +5,13 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function NoAuthLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const user = useUser();
+    const user = useUser();
 
-  if (user) return redirect("/home");
+    if (user) return redirect("/home");
 
-  return <>{children}</>;
+    return <>{children}</>;
 }

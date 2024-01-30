@@ -3,22 +3,15 @@ import axios from "axios";
 import { cookies } from "next/headers";
 
 const client = () => {
-  try {
-    const cookieStore = cookies();
-    const accessToken = cookieStore.get("ac");
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("ac");
 
-    return axios.create({
-      baseURL: env("NEXT_PUBLIC_API_URL"),
-      headers: {
-        Cookie: `ac=${accessToken?.value}`,
-      },
-    });
-  } catch (e) {
-    return axios.create({
-      baseURL: env("NEXT_PUBLIC_API_URL"),
-      withCredentials: true,
-    });
-  }
+  return axios.create({
+    baseURL: env("NEXT_PUBLIC_API_URL"),
+    headers: {
+      Cookie: `ac=${accessToken?.value}`,
+    },
+  });
 };
 
-export { client as axios };
+export { client as axiosClient };

@@ -5,6 +5,7 @@ import { createCookie, emailRegex } from "../../utils/auth";
 export const POST = createRoute({
   handler: async (c) => {
     const { email, password, name } = c.body;
+    console.log(email, password, name);
 
     const existingUser = await postgres.user.findUnique({
       where: {
